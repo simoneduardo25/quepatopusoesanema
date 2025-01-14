@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Carrito - QuePatoPusoEsaÑema</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@400;500&display=swap"
+      rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <div class="wrapper-content">
+      <%- include('../partials/_navbar.ejs') %>
+
+      <div class="main-content container my-4">
+        <h2>Mi Carrito</h2>
+
+        <% if (success && success.trim().length > 0) { %>
+          <div class="alert alert-success alert-dismissible fade show show" role="alert">
+            <%= success %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+          </div>
+        <% } %>
+        <% if (error && error.trim().length > 0) { %>
+          <div class="alert alert-danger alert-dismissible fade show show" role="alert">
+            <%= error %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+          </div>
+        <% } %>
+
+        <% if (items.length === 0) { %>
+          <div class="alert alert-info show" role="alert">
+            No hay productos en el carrito.
+          </div>
+        <% } else { %>
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle admin-table">
+              <thead>
+                <tr>
+                  <th>Producto</th>
+                  <th>Cantidad</th>
+                  <th>Precio</th>
+                  <th>Subtotal</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% items.forEach(item => { %>
+                  <tr>
+                    <td data-label="Producto">
+                      <img
+                        src="/uploads/<%= item.image_url || 'default.png' %>"
+                        width="50"
+                        alt="<%= item.name %>"
+                        class="me-2"
+                      >
+                      <%= item.name %>
+                    </td>
+                    <td data-label="Cantidad">
+                      <form action="/cart/update" method="POST" class="d-flex align-items-center">
+                        <input type="hidden" name="cartId" value="<%= item.id %>">
+                        <input
+                          type="number"
+                          name="quantity"
+                          value="<%= item.quantity %>"
+                          min="1"
+                          class="form-control form-control-sm me-2"
+                          style="width: 80px;"
+                        />
+                        <button type="submit" class="btn btn-sm btn-secondary">Actualizar</button>
+                      </form>
+                    </td>
+                    <td data-label="Precio">$<%= parseFloat(item.price).toFixed(2) %></td>
+                    <td data-label="Subtotal">$<%= (parseFloat(item.price) * parseInt(item.quantity)).toFixed(2) %></td>
+                    <td data-label="Acciones">
+                      <a href="/cart/remove/<%= item.id %>" class="btn btn-sm btn-danger btn-delete">
+                        Eliminar
+                      </a>
+                    </td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mt-4">
+            <h4>Total: $<%= parseFloat(total).toFixed(2) %></h4>
+            <form action="/orders/create" method="POST">
+              <button type="submit" class="btn btn-success">Realizar Pedido</button>
+            </form>
+          </div>
+        <% } %>
+      </div>
+
+      <%- include('../partials/_footer.ejs') %>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

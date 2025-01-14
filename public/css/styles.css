@@ -1,0 +1,451 @@
+/* ==============================
+   GLOBAL RESETS Y VARIABLES
+============================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-primario: #c92c2c; 
+  --color-secundario: #ff9800;
+  --color-oscuro: #2e2e2e;
+  --color-claro: #f2f2f2;
+  --color-blanco: #ffffff;
+  --color-gris: #e0e0e0;
+
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'Poppins', sans-serif;
+}
+
+/* ==============================
+   HTML/BODY Y WRAPPER
+============================== */
+html, body {
+  height: 100%;
+  font-family: var(--font-body);
+  background-color: var(--color-claro);
+  color: var(--color-oscuro);
+}
+
+.wrapper-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.main-content {
+  flex: 1 0 auto;
+}
+
+footer {
+  flex-shrink: 0;
+  background-color: var(--color-gris);
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+/* ==============================
+   HEADINGS, TEXT
+============================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-primario);
+  margin-bottom: 0.6rem;
+}
+p {
+  margin-bottom: 0.8rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ==============================
+   NAVBAR
+============================== */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand img {
+  width: 350px;    
+  height: auto;
+  margin-right: 0;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: var(--color-oscuro) !important;
+  transition: color 0.3s ease;
+}
+.navbar-light .navbar-nav .nav-link:hover {
+  color: var(--color-primario) !important;
+}
+.navbar-light .navbar-nav .nav-link.active {
+  color: var(--color-secundario) !important;
+}
+
+/* ==============================
+   HERO / BANNER
+============================== */
+.home-hero-2 {
+  position: relative;
+  width: 100%;
+  min-height: 70vh;
+  background: 
+    linear-gradient(
+      to bottom,
+      rgba(201, 44, 44, 0.7),
+      rgba(201, 44, 44, 0.7)
+    ),
+    url("/images/artesania-home.jpg") center/cover no-repeat;
+  background-blend-mode: overlay; 
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.3); 
+  border-radius: 8px; 
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--color-blanco);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+}
+
+.btn-hero {
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  text-decoration: none;
+  font-weight: 500;
+}
+.btn-hero:hover {
+  background-color: #a51f1f;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* ==============================
+   CARD-FEATURE
+============================== */
+.card-feature {
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-feature h3 {
+  font-family: var(--font-heading);
+  color: var(--color-primario);
+  margin-bottom: 1rem;
+}
+.card-feature p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 0;
+}
+.card-feature:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* ==============================
+   ALERT
+============================== */
+.alert {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.alert.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.alert-dismissible .btn-close {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+.alert-dismissible .btn-close:hover {
+  opacity: 1;
+}
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 0.8rem;
+  border-radius: 4px;
+}
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  padding: 0.8rem;
+  border-radius: 4px;
+}
+.alert-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+  padding: 0.8rem;
+  border-radius: 4px;
+}
+
+/* ==============================
+   CART Y TABLES
+============================== */
+.table thead th {
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+}
+.table tbody tr:hover {
+  background-color: #fafafa;
+}
+table img {
+  object-fit: cover;
+  border: 1px solid var(--color-gris);
+  padding: 2px;
+  background-color: var(--color-blanco);
+  margin-right: 8px;
+}
+
+/* ==============================
+   PRODUCT CARDS
+============================== */
+.product-image {
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 2px solid var(--color-gris);
+}
+
+.card-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--color-primario);
+}
+
+.card-text {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: #555;
+}
+
+.btn-primary {
+  background-color: var(--color-primario);
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #a51f1f;
+  transform: translateY(-2px);
+}
+
+h2 {
+  font-family: var(--font-heading);
+  color: var(--color-primario);
+}
+
+/* ==============================
+   CONTACT PAGE
+============================== */
+.main-content {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* ==============================
+   ADMIN PANEL
+============================== */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-gris);
+}
+
+.admin-table th {
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+}
+
+.admin-table tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+.admin-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: var(--color-blanco);
+  border: none;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .admin-table thead {
+    display: none;
+  }
+
+  .admin-table, .admin-table tbody, .admin-table tr, .admin-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .admin-table tr {
+    margin-bottom: 1rem;
+  }
+
+  .admin-table td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  .admin-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 0.75rem;
+    font-weight: bold;
+    text-align: left;
+  }
+}
+
+.is-invalid {
+  border-color: #dc3545;
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(201, 44, 44, 0.25);
+  transition: box-shadow 0.3s ease;
+}
+
+/* ==============================
+   LOGIN Y REGISTER 
+============================== */
+.login-register-background {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: 
+    linear-gradient(
+      to bottom,
+      rgba(201, 44, 44, 0.7),
+      rgba(201, 44, 44, 0.7)
+    ),
+    url("/images/artesania-home.jpg") center/cover no-repeat;
+  background-blend-mode: overlay;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.welcome-message {
+  padding: 2rem;
+  color: var(--color-blanco);
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+}
+
+.welcome-message h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-blanco);
+  margin-bottom: 1rem;
+}
+
+.welcome-message p {
+  font-size: 1.25rem;
+  margin-top: 1rem;
+  color: var(--color-blanco);
+}
+
+.login-register-form {
+  max-width: 500px;
+  width: 100%;
+}
+
+.login-register-form .card {
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.login-register-form .card-body {
+  padding: 2rem;
+}
+
+@media (max-width: 992px) {
+  .welcome-message {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .welcome-message h1 {
+    font-size: 2rem;
+  }
+
+  .welcome-message p {
+    font-size: 1.1rem;
+  }
+
+  .login-register-background {
+    padding: 1rem;
+  }
+}
